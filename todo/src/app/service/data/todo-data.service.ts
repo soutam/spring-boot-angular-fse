@@ -21,4 +21,11 @@ export class TodoDataService {
     console.log("delete request to api for todo id", todoId)
     return this.httpClient.delete(`http://localhost:8080/todo-api/${name}/todo/${todoId}`)
   }
+
+  getTodoItemById(name,id){
+
+    return this.httpClient.get<Todos>(`http://localhost:8080/todo-api/${name}/todo/${id}`)
+  }
+
+  
 }
