@@ -13,10 +13,11 @@ import java.util.List;
 public class ToDoServiceImpl implements ToDoService  {
 
     private static List<Todo> todoList = new ArrayList<>();
+    private static long  idCounter = 0l;
     static {
-        todoList.add(new Todo(1l,"audit","22/07/2020", false));
-        todoList.add(new Todo(2l,"office meeting","22/07/2020", true));
-        todoList.add(new Todo(3l,"presentation","23/07/2020", false));
+        todoList.add(new Todo(++idCounter,"audit",new Date(), false));
+        todoList.add(new Todo(++idCounter,"office meeting",new Date(), true));
+        todoList.add(new Todo(++idCounter,"presentation",new Date(), false));
     }
 
     @Override

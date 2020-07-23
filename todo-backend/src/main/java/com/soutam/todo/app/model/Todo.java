@@ -6,13 +6,13 @@ public class Todo {
 
     private Long Id;
     private String description;
-    private String targetDate;
+    private Date targetDate;
     private boolean isCompleted;
 
     public Todo() {
     }
 
-    public Todo(Long id, String description, String targetDate, boolean isCompleted) {
+    public Todo(Long id, String description, Date targetDate, boolean isCompleted) {
         Id = id;
         this.description = description;
         this.targetDate = targetDate;
@@ -35,11 +35,11 @@ public class Todo {
         this.description = description;
     }
 
-    public String getTargetDate() {
+    public Date getTargetDate() {
         return targetDate;
     }
 
-    public void setTargetDate(String targetDate) {
+    public void setTargetDate(Date targetDate) {
         this.targetDate = targetDate;
     }
 
