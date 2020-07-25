@@ -7,7 +7,7 @@ export class Todos{
   constructor(
     public id : number,
     public description: string,
-    public completed : boolean,
+    public completed : string,
     public targetDate: Date
 
   ){}
@@ -54,5 +54,9 @@ export class ListTodosComponent implements OnInit {
 
   updateTodo(id){
     this.router.navigate(['todo',id])
+  }
+
+  addTodo(){
+    this.router.navigate(['todo',-1])
   }
 }

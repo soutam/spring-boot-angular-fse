@@ -5,7 +5,7 @@
         <thead>
             <!-- <th>Id</th> -->
             <th>Description</th>
-            <th>Is Completed</th>
+            <th>Status</th>
             <th>Target Date</th>
             <th>Update</th>
             <th>Delete</th>
@@ -20,5 +20,6 @@
                 <td><button (click)=deleteTodoItem(todo.id) class="btn btn-warning">Delete</button></td>
             </tr>
         </tbody>
+        <div class="row" (click)=addTodo()><button  class="btn btn-success" >Add</button></div>
     </table>
 </div>
