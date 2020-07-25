@@ -1,5 +1,7 @@
 package com.soutam.todo.app.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class Todo {
@@ -7,12 +9,13 @@ public class Todo {
     private Long Id;
     private String description;
     private Date targetDate;
-    private boolean isCompleted;
+    @JsonProperty("completed")
+    private String isCompleted;
 
     public Todo() {
     }
 
-    public Todo(Long id, String description, Date targetDate, boolean isCompleted) {
+    public Todo(Long id, String description, Date targetDate, String isCompleted) {
         Id = id;
         this.description = description;
         this.targetDate = targetDate;
@@ -43,11 +46,11 @@ public class Todo {
         this.targetDate = targetDate;
     }
 
-    public boolean isCompleted() {
+    public String isCompleted() {
         return isCompleted;
     }
 
-    public void setCompleted(boolean completed) {
+    public void setCompleted(String completed) {
         isCompleted = completed;
     }
 }

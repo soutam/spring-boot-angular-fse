@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service'
 import { Todos } from '../list-todos/list-todos.component'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -11,20 +11,46 @@ import { ActivatedRoute } from '@angular/router';
 export class TodoComponent implements OnInit {
 
   todo: Todos
-  todoid: string
-
-  constructor(private todoService:  TodoDataService,
-    private route :ActivatedRoute) { }
+  todoid: number
+  
+  constructor(private todoService: TodoDataService,
+    private activeRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
 
-    this.todoid = this.route.snapshot.params['id']
-    this.getTodoItemById(this.todoid)
+    this.todoid = this.activeRoute.snapshot.params['id']
+    this.todo = new Todos(this.todoid, '','No',new Date())
+
+    if (this.todoid != -1) {
+      this.getTodoItemById(this.todoid)
+    }
   }
 
-  getTodoItemById(id){
-    this.todoService.getTodoItemById('soutam',id).subscribe(
-      response=> this.todo = response
+  getTodoItemById(id) {
+    this.todoService.getTodoItemById('soutam', id).subscribe(
+      response => this.todo = response
     )
+  }
+
+  updateTodo() {
+   
+    if (this.todoid != -1) {
+      this.todoService.updateTodo('soutam', this.todoid, this.todo).subscribe(
+        response => {
+          // console.log(response)
+          this.router.navigate(['todos'])
+        }
+      )
+    }else{
+      this.todoService.addTodo('soutam',this.todo).subscribe(
+        response => {this.router.navigate(['todos'])}
+      )
+    }
+  }
+
+  onItemChange(val){
+    console.log('val is',val)
+    this.todo.completed=val
   }
 }

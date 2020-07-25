@@ -25,7 +25,8 @@ public class TodoCtrl {
     @GetMapping("/{user}/todos/")
     public ResponseEntity<List<Todo>> getAllTodoItems(@PathVariable String user){
         logger.info("returning todo list for user {}", user);
-        return new ResponseEntity<>(toDoService.getAllTodoItems(), HttpStatus.OK);
+        List<Todo> todoList= toDoService.getAllTodoItems();
+        return new ResponseEntity<>(todoList, HttpStatus.OK);
     }
 
     @GetMapping("/{user}/todo/{id}")
@@ -48,14 +49,14 @@ public class TodoCtrl {
 
     @PostMapping("/{user}/todo/")
     public ResponseEntity<List<Todo>> addTodo(@RequestBody Todo todo){
-
-        return new ResponseEntity<>(toDoService.addTodo(todo), HttpStatus.OK);
+        return new ResponseEntity<>(toDoService.addTodo(todo), HttpStatus.CREATED);
 
     }
 
     @PutMapping("/{user}/todo/{id}")
-    public ResponseEntity<List<Todo>> updateTodo(@PathVariable Long id, @RequestBody Todo todo){
-        return new ResponseEntity<>(toDoService.updateTodo(id,todo), HttpStatus.OK);
+    public ResponseEntity updateTodo(@PathVariable Long id, @RequestBody Todo todo){
+        toDoService.updateTodo(id,todo);
+        return ResponseEntity.accepted().build();
 
     }
 }

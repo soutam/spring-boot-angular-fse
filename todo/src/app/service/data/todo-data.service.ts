@@ -27,5 +27,12 @@ export class TodoDataService {
     return this.httpClient.get<Todos>(`http://localhost:8080/todo-api/${name}/todo/${id}`)
   }
 
+  updateTodo(name,id,todo:Todos){
+    return this.httpClient.put(`http://localhost:8080/todo-api/${name}/todo/${id}`,todo)
+  }
+
+  addTodo(name,todo:Todos){
+    return this.httpClient.post(`http://localhost:8080/todo-api/${name}/todo/`,todo)
+  }
   
 }

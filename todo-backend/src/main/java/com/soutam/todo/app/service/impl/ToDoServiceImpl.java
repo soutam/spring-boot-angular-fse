@@ -14,11 +14,11 @@ public class ToDoServiceImpl implements ToDoService  {
 
     private static List<Todo> todoList = new ArrayList<>();
     private static long  idCounter = 0l;
-    static {
+    /*static {
         todoList.add(new Todo(++idCounter,"audit",new Date(), false));
         todoList.add(new Todo(++idCounter,"office meeting",new Date(), true));
         todoList.add(new Todo(++idCounter,"presentation",new Date(), false));
-    }
+    }*/
 
     @Override
     public List<Todo> getAllTodoItems() {
@@ -38,6 +38,7 @@ public class ToDoServiceImpl implements ToDoService  {
 
     @Override
     public List<Todo> addTodo(Todo todo) {
+        todo.setId(++idCounter);
         todoList.add(todo);
         return todoList;
     }
