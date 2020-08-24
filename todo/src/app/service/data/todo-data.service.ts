@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todos } from '../../list-todos/list-todos.component'
 
 @Injectable({
@@ -13,7 +13,7 @@ export class TodoDataService {
   ) { }
 
   getTodoListFromApi(name){
-    console.log("fetching from api for", name)
+    
     return this.httpClient.get<Todos[]>(`http://localhost:8080/todo-api/${name}/todos/`)
   }
 
@@ -34,5 +34,7 @@ export class TodoDataService {
   addTodo(name,todo:Todos){
     return this.httpClient.post(`http://localhost:8080/todo-api/${name}/todo/`,todo)
   }
+
+ 
   
 }
